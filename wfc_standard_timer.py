@@ -91,7 +91,6 @@ if __name__ == "__main__":
     import timeit
     import os
     from utils import verify_graph
-    import time
     for filename in os.listdir("./data"):
         if(filename.endswith("b") or filename.startswith(".")):
             continue
