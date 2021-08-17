@@ -127,7 +127,11 @@ if __name__ == "__main__":
         entropy = [colors] * nodes
         output = run(nodes, colors, connections, available_colors, entropy, output)
         #micro seconds
-        print(filename, verify_graph(output, connections), nodes, len(set(output)), timeit.timeit('run(nodes, colors, connections, available_colors, entropy, output)', number = 100, globals=globals()) / 100 * 10 ** 6, sep=",", end="\n")
+        if not(verify_graph(output, connections)):
+            print("ERROR ON FILE: {}, produced invalid result".format(filename))
+            break
+        print("File: {}, k-value: {}, time average of 100 in micro seconds: {}".format(filename, len(set(output)), timeit.timeit('run(nodes, colors, connections, available_colors, entropy, output)', number = 100, globals=globals()) / 100 * 10 ** 6))
+        # print(filename, verify_graph(output, connections), nodes, len(set(output)), timeit.timeit('run(nodes, colors, connections, available_colors, entropy, output)', number = 100, globals=globals()) / 100 * 10 ** 6, sep=",", end="\n")
         # print(verify_graph(output, connections))
         # print(nodes)
         # print(len(set(output)))
